@@ -90,9 +90,11 @@
 		compatible = "mdss,nt36672-tianma-fhd";
 		reg = <0>;
 
-		backlight = <&backlight>;
-		reset-gpios = <&msmgpio 53 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&tlmm 53 GPIO_ACTIVE_HIGH>;
+ 		disp-te-gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>;
 
+		pinctrl-names = "default";
+		pinctrl-0 = <&panel_reset_n &mdp_vsync_n>;
 		port {
 			panel_in: endpoint {
 				remote-endpoint = <&dsi0_out>;
@@ -104,6 +106,14 @@
 &dsi0_out {
 	data-lanes = <0 1 2 3>;
 	remote-endpoint = <&panel_in>;
+};
+
+&mdss {
+	status = "okay";
+};
+
+&gpucc {
+	status = "okay";
 };
 
 &pon_pwrkey {
@@ -397,6 +407,20 @@
 
 &tlmm {
 	gpio-reserved-ranges = <8 4>;
+	
+	panel_reset_n: panel-rst-n {
+		pins = "gpio53";
+		function = "gpio";
+		drive-strength = <8>;
+		bias-disable;
+	};
+
+	mdp_vsync_n: mdp-vsync-n {
+		pins = "gpio59";
+		function = "mdp_vsync";
+		drive-strength = <2>;
+		bias-pull-down;
+	};
 };
 
 &usb3 {
