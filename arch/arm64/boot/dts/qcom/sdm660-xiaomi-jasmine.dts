@@ -28,14 +28,6 @@
 
 		stdout-path = "serial0:115200n8";
 
-		framebuffer0: framebuffer@9d400000 {
-			compatible = "simple-framebuffer";
-			reg = <0 0x9d400000 0 (1080 * 2160 * 4)>;
-			width = <1080>;
-			height = <2160>;
-			stride = <(1080 * 4)>;
-			format = "a8r8g8b8";
-		};
 	};
 
 	vph_pwr: vph-pwr-regulator {
@@ -91,6 +83,27 @@
 
 &blsp1_uart2 {
 	status = "okay";
+};
+
+&dsi0 {
+	panel@0 {
+		compatible = "mdss,nt36672-tianma-fhd";
+		reg = <0>;
+
+		backlight = <&backlight>;
+		reset-gpios = <&msmgpio 53 GPIO_ACTIVE_LOW>;
+
+		port {
+			panel_in: endpoint {
+				remote-endpoint = <&dsi0_out>;
+			};
+		};
+	};
+};
+
+&dsi0_out {
+	data-lanes = <0 1 2 3>;
+	remote-endpoint = <&panel_in>;
 };
 
 &pon_pwrkey {
