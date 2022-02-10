@@ -89,6 +89,7 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 
+    status = "okay";
 	vdda-supply = <&vreg_l11a_1p8>;
 	
 	panel: panel@0 {
