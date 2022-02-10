@@ -49,9 +49,11 @@ static void nt36672_tianma_fhd_reset(struct nt36672_tianma_fhd *ctx)
 
 static int nt36672_tianma_fhd_on(struct nt36672_tianma_fhd *ctx)
 {
+
 	struct mipi_dsi_device *dsi = ctx->dsi;
 	struct device *dev = &dsi->dev;
 	int ret;
+    dev_err(dev, "hello world!\n");
 
 	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
 

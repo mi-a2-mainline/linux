@@ -90,15 +90,19 @@
 	#size-cells = <0>;
 
     status = "okay";
+    
+	vdda-supply = <&vreg_l1a_1p225>;
 
-	
-	panel: panel@0 {
+	panel@0 {
 		compatible = "mdss,nt36672-tianma-fhd";
 		reg = <0>;
 
-        vdda-supply = <&vreg_l11a_1p8>;
 		reset-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
-        
+		
+		backlight = <&pm660l_wled>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&panel_reset_n>;
 		port {
 			panel_in: endpoint {
 				remote-endpoint = <&dsi0_out>;
@@ -113,6 +117,14 @@
 };
 
 &mdss {
+	status = "okay";
+};
+
+&pm660l_wled {
+	status = "okay";
+};
+
+&gpucc {
 	status = "okay";
 };
 
@@ -407,6 +419,13 @@
 
 &tlmm {
 	gpio-reserved-ranges = <8 4>;
+	
+    panel_reset_n: panel-rst-n {
+		pins = "gpio53";
+		function = "gpio";
+		drive-strength = <8>;
+		bias-disable;
+	};
 };
 
 &usb3 {
