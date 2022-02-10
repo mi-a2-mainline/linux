@@ -90,12 +90,13 @@
 	#size-cells = <0>;
 
     status = "okay";
-	vdda-supply = <&vreg_l11a_1p8>;
+
 	
 	panel: panel@0 {
 		compatible = "mdss,nt36672-tianma-fhd";
 		reg = <0>;
 
+        vdda-supply = <&vreg_l11a_1p8>;
 		reset-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
         
 		port {
