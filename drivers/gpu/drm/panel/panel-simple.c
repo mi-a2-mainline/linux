@@ -4327,7 +4327,7 @@ static const struct of_device_id dsi_of_match[] = {
 		.compatible = "osddisplays,osd101t2045-53ts",
 		.data = &osd101t2045_53ts
 	}, {
-    	.compatible = "mdss,nt36672-tianma-fhd",
+    	.compatible = "mdss,simple-nt36672-tianma-fhd",
 		.data = &nt36672_tianma_fhd
 	}, {
 		/* sentinel */
