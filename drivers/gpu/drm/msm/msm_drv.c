@@ -1372,6 +1372,7 @@ static int msm_pdev_probe(struct platform_device *pdev)
 	}
 	if (ret) {
 		platform_set_drvdata(pdev, NULL);
+		printk(ret1 "%d\n", ret);
 		return ret;
 	}
 
@@ -1404,6 +1405,7 @@ fail:
 	if (priv->mdss && priv->mdss->funcs)
 		priv->mdss->funcs->destroy(priv->mdss);
 
+	printk(ret2 "%d\n", ret);
 	return ret;
 }
 
