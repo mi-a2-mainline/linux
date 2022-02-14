@@ -975,12 +975,14 @@ static int mdp5_setup_interconnect(struct platform_device *pdev)
 
 static int mdp5_dev_probe(struct platform_device *pdev)
 {
+    printk(KERN_ALERT "probestartmdp5\n");
 	int ret;
 
 	DBG("");
 
 	ret = mdp5_setup_interconnect(pdev);
 	if (ret)
+        printk(KERN_ALERT "ret1mdp5 %d\n", ret);
 		return ret;
 
 	return component_add(&pdev->dev, &mdp5_ops);

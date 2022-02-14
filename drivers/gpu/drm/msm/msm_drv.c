@@ -46,6 +46,12 @@
 #define MSM_VERSION_MINOR	8
 #define MSM_VERSION_PATCHLEVEL	0
 
+
+static int hello_init(void){
+printk(KERN_ALERT "Hello this worked\n");
+return 0;
+}
+    
 static const struct drm_mode_config_funcs mode_config_funcs = {
 	.fb_create = msm_framebuffer_create,
 	.output_poll_changed = drm_fb_helper_output_poll_changed,
@@ -108,7 +114,7 @@ struct clk *msm_clk_get(struct platform_device *pdev, const char *name)
 {
 	struct clk *clk;
 	char name2[32];
-
+    
 	clk = devm_clk_get(&pdev->dev, name);
 	if (!IS_ERR(clk) || PTR_ERR(clk) == -EPROBE_DEFER)
 		return clk;
@@ -1352,6 +1358,8 @@ static int msm_pdev_probe(struct platform_device *pdev)
 	struct component_match *match = NULL;
 	struct msm_drm_private *priv;
 	int ret;
+    
+	pr_warn("probestart\n");
 
 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
 	if (!priv)
@@ -1372,7 +1380,7 @@ static int msm_pdev_probe(struct platform_device *pdev)
 	}
 	if (ret) {
 		platform_set_drvdata(pdev, NULL);
-		printk("ret1 %d\n", ret);
+		pr_warn("ret1 %d\n", ret);
 		return ret;
 	}
 
@@ -1405,7 +1413,7 @@ fail:
 	if (priv->mdss && priv->mdss->funcs)
 		priv->mdss->funcs->destroy(priv->mdss);
 
-	printk("ret2 %d\n", ret);
+	pr_info("ret2 %d\n", ret);
 	return ret;
 }
 
@@ -1459,10 +1467,12 @@ static struct platform_driver msm_platform_driver = {
 
 static int __init msm_drm_register(void)
 {
+    printk(KERN_ALERT "Hello this worked2\n");
 	if (!modeset)
 		return -EINVAL;
 
 	DBG("init");
+    hello_init();
 	msm_mdp_register();
 	msm_dpu_register();
 	msm_dsi_register();

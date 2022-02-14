@@ -266,7 +266,7 @@ static int nt36672_tianma_fhd_remove(struct mipi_dsi_device *dsi)
 }
 
 static const struct of_device_id nt36672_tianma_fhd_of_match[] = {
-	{ .compatible = "mdss,nt36672-tianma-fhd" }, // FIXME
+	{ .compatible = "xiaomi,nt36672-tianma-fhd" }, // FIXME
 	{ /* sentinel */ }
 };
 MODULE_DEVICE_TABLE(of, nt36672_tianma_fhd_of_match);
