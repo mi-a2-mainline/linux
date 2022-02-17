@@ -101,8 +101,8 @@
 		
 		backlight = <&pm660l_wled>;
 
-		pinctrl-names = "default";
-		pinctrl-0 = <&panel_reset_n>;
+//		pinctrl-names = "default";
+//		pinctrl-0 = <&panel_reset_n>;
 		port {
 			panel_in: endpoint {
 				remote-endpoint = <&dsi0_out>;
@@ -420,12 +420,12 @@
 &tlmm {
 	gpio-reserved-ranges = <8 4>;
 	
-    panel_reset_n: panel-rst-n {
-		pins = "gpio53";
-		function = "gpio";
-		drive-strength = <8>;
-		bias-disable;
-	};
+//    panel_reset_n: panel-rst-n {
+//		pins = "gpio53";
+//		function = "gpio";
+//		drive-strength = <8>;
+//		bias-disable;
+//	};
 };
 
 &usb3 {

@@ -154,11 +154,12 @@
 
 &mdss {
 	dsi1: dsi@c996000 {
+        status = "disabled";
 		compatible = "qcom,mdss-dsi-ctrl";
 		reg = <0x0c996000 0x400>;
 		reg-names = "dsi_ctrl";
 
-		status = "disabled";
+
 
 		/* DSI1 shares the OPP table with DSI0 */
 		operating-points-v2 = <&dsi_opp_table>;
@@ -214,6 +215,7 @@
 	};
 
 	dsi1_phy: dsi-phy@c996400 {
+		status = "disabled";
 		compatible = "qcom,dsi-phy-14nm-660";
 		reg = <0x0c996400 0x100>,
 				<0x0c996500 0x300>,
