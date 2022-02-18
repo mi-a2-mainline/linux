@@ -99,7 +99,7 @@
 
 		reset-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
 		
-		backlight = <&pm660l_wled>;
+//		backlight = <&pm660l_wled>;
 
 //		pinctrl-names = "default";
 //		pinctrl-0 = <&panel_reset_n>;
@@ -121,7 +121,7 @@
 };
 
 &pm660l_wled {
-	status = "okay";
+	status = "disabled";
 };
 
 &gpucc {
