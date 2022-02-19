@@ -11,6 +11,8 @@
 #include "pm660l.dtsi"
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/input/gpio-keys.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+#include <dt-bindings/gpio/gpio.h>
 
 / {
 	model = "Xiaomi A2";
@@ -114,6 +116,21 @@
 &dsi0_out {
 	data-lanes = <0 1 2 3>;
 	remote-endpoint = <&panel_in>;
+};
+
+
+&blsp_i2c1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	touchscreen@62 {
+
+		compatible = "novatek,nt36525";
+		reg = <0x62>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <67 0x2008>;
+		reset-gpios = <&tlmm 66 GPIO_ACTIVE_LOW>;
+    };
 };
 
 &mdss {
